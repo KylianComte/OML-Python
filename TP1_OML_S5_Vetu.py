@@ -1,5 +1,5 @@
 #########################################################################
-#Exemple 6
+#Exemple 2
 #######################################################################
 
 import math
@@ -21,10 +21,15 @@ som_carre=0
 Ne=len(nombre_enfants)
 
 for i in range(Ne):
-    # remplir ici code pour calculer la moyenne et la variance
+  # remplir ici code pour calculer la moyenne et la variance
+  moyenne+=nombre_enfants[i]*nombre_salariés[i]/effectif_total
+  variance+=(nombre_enfants[i]**2)*nombre_salariés[i]/effectif_total
+  ecart_type=math.sqrt(variance)
 
-
-    # fin code
+print('moyenne=',moyenne)
+print('variance=',variance)
+print('ecart-type=',ecart_type)
+# fin code
 
 
 
