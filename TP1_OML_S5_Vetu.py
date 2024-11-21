@@ -302,31 +302,3 @@ plt.title("simulation loi normale avec écart-type = {0:6.3f}".format(ecart_type
 
 
 plt.show()
-
-
-
-#########################################################
-# series statistiques doubles
-########################################################
-# calcul de la covariance
-temperature=[3,5.3,8.4,13.1,14.1,18.7,22,20.4,17.5,13.1,8.6,4]
-precipitations=[74,61,61,28,68,115,28,25,45,83,144,60]
-
-plt.figure(10)
-plt.scatter(temperature,precipitations)
-
-#calcul de la covariance
-matrice_cov=np.cov(temperature,precipitations,bias=True)
-print('matrice de covariance=',matrice_cov)
-print('la covariance de X et Y est =',matrice_cov[0][1])
-
-# droite de régression
-
-a,b=np.polyfit(temperature,precipitations,1)
-print('la droite de régression a pour équation y=',a,'x+',b)
-x_trace=np.linspace(min(temperature),max(temperature),100)
-plt.plot(x_trace,a*x_trace+b,'red')
-plt.title('températures et parécipitations dans le Sud Ouest en 2010')
-plt.xlabel('Températures en °C')
-plt.ylabel('Précipitation en mm')
-plt.show()
