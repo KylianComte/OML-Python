@@ -22,7 +22,7 @@ print('la covariance de X et Y est =',matrice_cov[0][1])
 matrice_var=variance(temperature)
 
 # Tracé des points 
-'''plt.figure(1)
+plt.figure(1)
 plt.scatter(temperature,precipitations)
 a1=matrice_cov[0][1]/matrice_var
 
@@ -44,7 +44,7 @@ plt.plot(x_trace,a1*x_trace+b1,'red')
 plt.title('températures et parécipitations dans le Sud Ouest en 2010')
 plt.xlabel('Températures en °C')
 plt.ylabel('Précipitation en mm')
-plt.show()'''
+plt.show()
 
 
 ###################################################################
@@ -90,8 +90,28 @@ plt.show()
 
 
 
-
-
 #####################
 # Exercice 3
-#A compléter
+rangAnnee=np.array([1,2,3,5])
+chiffreAffaires=np.array([645,700,840,1235])
+
+# Création de la matrice N
+N = np.vstack([rangAnnee, np.ones(len(rangAnnee))]).T
+
+# Calcul de la pseudoinverse en utilisant np.linalg.pinv
+a4,b4=np.linalg.pinv(N).dot(chiffreAffaires)
+print('la droite de régression a pour équation y=',a4,'x+',b4)
+
+# Estimer 2018 
+chiffreAffaires2018=a4*4+b4
+print('le chiffre d affaires de 2018 est =',chiffreAffaires2018)
+
+# Tracé des points
+plt.figure(4)
+plt.scatter(rangAnnee,chiffreAffaires)
+x_trace=np.linspace(min(rangAnnee),max(rangAnnee),100)
+plt.plot(x_trace,a4*x_trace+b4,'green')
+plt.title('Rang et Chiffre affaires')
+plt.xlabel('Rang')
+plt.ylabel('Chifre d affaires en milliers d euros')
+plt.show()
