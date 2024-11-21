@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from statistics import fmean, variance
-'''###############################################
+###############################################
 # Exercice 1 :Première méthode avec la matrice de covariance
 ###############################################
 temperature=np.array([3.0, 5.8, 4, 13.1, 14.1, 18.7, 22.0, 20.4, 17.5, 13.1, 8.6, 4.0])
@@ -45,7 +45,7 @@ plt.title('températures et parécipitations dans le Sud Ouest en 2010')
 plt.xlabel('Températures en °C')
 plt.ylabel('Précipitation en mm')
 plt.show()
-'''
+
 
 ###################################################################
 # Exercice 1 :Deuxième méthode : utilisation de la pseudo inverse
@@ -55,9 +55,9 @@ plt.show()
 N = np.vstack([temperature, np.ones(len(temperature))]).T
 
 # Calcul de la pseudoinverse en utilisant np.linalg.pinv
-???
-a2,b2=???
-print('la droite de régression a pour équation y=',a2,'x+',b2)
+#???
+#a2,b2=???
+#print('la droite de régression a pour équation y=',a2,'x+',b2)
 
 
 
@@ -71,7 +71,52 @@ print('la droite de régression a pour équation y=',a2,'x+',b2)
 
 #####################
 # Exercice 2
-#A compléter
+
+anciennete=np.array([7,15,15,16,5,12,2,20,14,9,15,8])
+salaire=np.array([1350,1700,1400,1900,1150,1600,1050,1750,1800,1350,1550,1250])
+
+# Calcul de la covariance
+matrice_cov=np.cov(anciennete,salaire,bias=True)
+print('matrice de covariance=',matrice_cov)
+print('la covariance de X et Y est =',matrice_cov[0][1])
+
+# Calcul de la variance
+matrice_var=variance(anciennete)
+
+# Tracé des points 
+plt.figure(1)
+plt.scatter(anciennete,salaire)
+a1=matrice_cov[0][1]/matrice_var
+
+xmoy=fmean(anciennete)
+ymoy=fmean(salaire)
+b1= ymoy-a1*xmoy
+
+
+print('moyenneAnciennete=',xmoy)
+print('moyenneSalaires=',ymoy)
+
+# droite de régression
+print('la droite de régression a pour équation y=',a1,'x+',b1)
+x_trace=np.linspace(min(anciennete),max(anciennete),100)
+
+#Tracé de la droite de régression avec un titre et les noms des axes
+plt.plot(x_trace,a1*x_trace+b1,'red')
+plt.title('Ancienneté et salaires des employés')
+plt.xlabel('Ancienneté en années')
+plt.ylabel('Salaire en €')
+plt.show()
+
+#Determination des valeurs ajustées
+for i in range(len(anciennete)):
+    print(f"Salaire ajusté pour une ancienneté de {anciennete[i]} ans =",a1*anciennete[i]+b1)
+    print(f"Salaire réel =",salaire[i])
+    print(f"Erreur =",salaire[i]-(a1*anciennete[i]+b1))
+
+
+# Estimation des salaires pour des anciennetés de 4 et 18 ans
+for anciennete in [4,18]:
+    print(f"Salaire estimé d'un salarié à {anciennete} ans d'ancienneté=",a1*anciennete+b1)
 
 
 
