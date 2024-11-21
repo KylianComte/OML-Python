@@ -26,9 +26,7 @@ for i in range(Ne):
   variance+=(nombre_enfants[i]**2)*nombre_salariés[i]/effectif_total
   ecart_type=math.sqrt(variance)
 
-print('moyenne=',moyenne)
-print('variance=',variance)
-print('ecart-type=',ecart_type)
+
 # fin code
 
 
@@ -39,8 +37,10 @@ nombre_moyen_enfants=np.average(nombre_enfants,weights=nombre_salariés)
 # impression des résultats
 # ecrire votre code ici
 
-
-
+print('moyenne =',moyenne)
+print('moyenne numpy =',nombre_moyen_enfants)
+print('variance =',variance)
+print('ecart-type =',ecart_type)
 
 # fin de code
 
