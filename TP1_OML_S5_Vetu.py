@@ -26,9 +26,7 @@ for i in range(Ne):
   variance+=(nombre_enfants[i]**2)*nombre_salariés[i]/effectif_total
   ecart_type=math.sqrt(variance)
 
-print('moyenne=',moyenne)
-print('variance=',variance)
-print('ecart-type=',ecart_type)
+
 # fin code
 
 
@@ -39,8 +37,10 @@ nombre_moyen_enfants=np.average(nombre_enfants,weights=nombre_salariés)
 # impression des résultats
 # ecrire votre code ici
 
-
-
+print('moyenne =',moyenne)
+print('moyenne numpy =',nombre_moyen_enfants)
+print('variance =',variance)
+print('ecart-type =',ecart_type)
 
 # fin de code
 
@@ -62,6 +62,7 @@ def normal(x,u,sigma):
 donnees_AII=np.array(pd.read_excel('notes_S4.xlsx',sheet_name="AII"))
 anglais_AII=donnees_AII[0:46,0]
 maths_AII=donnees_AII[0:46,1]
+PPP_AII=donnees_AII[0:46,2]
 
 plt.figure(1)
 # Histogramme des notes 
@@ -94,14 +95,152 @@ plt.figure(2)
 
 # ecrire le code pour la moyenne de maths, 3PE
 
+#maths
+
+plt.hist(maths_AII,[0,2,4,6,8,10,12,14,16,18,20],color='blue',edgecolor='black',density=True)
+plt.title('notes maths AII')
+plt.xlabel('Notes')
+plt.ylabel('Fréquences')
+
+#Calcul de la moyenne
+moyenne_mat=np.mean(maths_AII)
+print('moyenne maths AII=',moyenne_mat)
+
+# Calcul de l'écart type
+ecart_type_mat=np.std(maths_AII)
+print('ecart maths AII=',ecart_type_mat)
+
+# Tracé de la loi normale
+abscisses_notes=np.linspace(0,20,1000)
+plt.plot(abscisses_notes, normal(abscisses_notes,moyenne_mat,ecart_type_mat),'r')
+axes=plt.gca()
+y_min_plot,y_max_plot=axes.get_ylim()
+print(y_max_plot)
+plt.axvline(moyenne_mat, ymin=0, ymax=normal(moyenne_mat,moyenne_mat,ecart_type_mat)/y_max_plot, color="red") 
+plt.text(5, 0.1, "moyenne= {0:6.3f}".format(moyenne_mat),color="red")
+plt.axvline(moyenne_mat-ecart_type_mat, ymin=0, ymax=normal(moyenne_mat,moyenne_mat,ecart_type_mat)/y_max_plot, color="red")
+plt.axvline(moyenne_mat+ecart_type_mat, ymin=0, ymax=normal(moyenne_mat,moyenne_mat,ecart_type_mat)/y_max_plot, color="red")
 
 
+plt.figure(3)
 
 
+#PPP
+plt.hist(PPP_AII,[0,2,4,6,8,10,12,14,16,18,20],color='blue',edgecolor='black',density=True)
+plt.title('notes PPP AII')
+plt.xlabel('Notes')
+plt.ylabel('Fréquences')
+
+#Calcul de la moyenne
+moyenne_PPP=np.mean(PPP_AII)
+print('moyenne PPP AII=',moyenne_PPP)
+
+# Calcul de l'écart type
+ecart_type_PPP=np.std(PPP_AII)
+print('ecart PPP AII=',ecart_type_PPP)
+
+# Tracé de la loi normale
+abscisses_notes=np.linspace(0,20,1000)
+plt.plot(abscisses_notes, normal(abscisses_notes,moyenne_PPP,ecart_type_PPP),'r')
+axes=plt.gca()
+y_min_plot,y_max_plot=axes.get_ylim()
+print(y_max_plot)
+plt.axvline(moyenne_PPP, ymin=0, ymax=normal(moyenne_PPP,moyenne_PPP,ecart_type_PPP)/y_max_plot, color="red") 
+plt.text(5, 0.1, "moyenne= {0:6.3f}".format(moyenne_PPP),color="red")
+plt.axvline(moyenne_PPP-ecart_type_PPP, ymin=0, ymax=normal(moyenne_PPP,moyenne_PPP,ecart_type_PPP)/y_max_plot, color="red")
+plt.axvline(moyenne_PPP+ecart_type_PPP, ymin=0, ymax=normal(moyenne_PPP,moyenne_PPP,ecart_type_PPP)/y_max_plot, color="red")
+
+# Lecture des données ESE
+donnees_ESE=np.array(pd.read_excel('notes_S4.xlsx',sheet_name="ESE"))
+anglais_ESE=donnees_ESE[0:46,0]
+maths_ESE=donnees_ESE[0:46,1]
+PPP_ESE=donnees_ESE[0:46,2]
+
+plt.figure(4)
+# Histogramme des notes 
+plt.hist(anglais_ESE,[0,2,4,6,8,10,12,14,16,18,20],color='blue',edgecolor='black',density=True)
+plt.title('notes anglais ESE')
+plt.xlabel('Notes')
+plt.ylabel('Fréquences')
+
+#Calcul de la moyenne
+moyenne_ang=np.mean(anglais_ESE)
+print('moyenne anglais ESE=',moyenne_ang)
+
+# Calcul de l'écart type
+ecart_type_ang=np.std(anglais_ESE)
+print('ecart anglais ESE=',ecart_type_ang)
+
+# Tracé de la loi normale
+abscisses_notes=np.linspace(0,20,1000)
+plt.plot(abscisses_notes, normal(abscisses_notes,moyenne_ang,ecart_type_ang),'r')
+axes=plt.gca()
+y_min_plot,y_max_plot=axes.get_ylim()
+print(y_max_plot)
+plt.axvline(moyenne_ang, ymin=0, ymax=normal(moyenne_ang,moyenne_ang,ecart_type_ang)/y_max_plot, color="red") 
+plt.text(5, 0.1, "moyenne= {0:6.3f}".format(moyenne_ang),color="red")
+plt.axvline(moyenne_ang-ecart_type_ang, ymin=0, ymax=normal(moyenne_ang,moyenne_ang,ecart_type_ang)/y_max_plot, color="red")
+plt.axvline(moyenne_ang+ecart_type_ang, ymin=0, ymax=normal(moyenne_ang,moyenne_ang,ecart_type_ang)/y_max_plot, color="red")
 
 
+plt.figure(5)
+
+# ecrire le code pour la moyenne de maths, 3PE
+
+#maths
+
+plt.hist(maths_ESE,[0,2,4,6,8,10,12,14,16,18,20],color='blue',edgecolor='black',density=True)
+plt.title('notes maths ESE')
+plt.xlabel('Notes')
+plt.ylabel('Fréquences')
+
+#Calcul de la moyenne
+moyenne_mat=np.mean(maths_ESE)
+print('moyenne maths ESE=',moyenne_mat)
+
+# Calcul de l'écart type
+ecart_type_mat=np.std(maths_ESE)
+print('ecart maths ESE=',ecart_type_mat)
+
+# Tracé de la loi normale
+abscisses_notes=np.linspace(0,20,1000)
+plt.plot(abscisses_notes, normal(abscisses_notes,moyenne_mat,ecart_type_mat),'r')
+axes=plt.gca()
+y_min_plot,y_max_plot=axes.get_ylim()
+print(y_max_plot)
+plt.axvline(moyenne_mat, ymin=0, ymax=normal(moyenne_mat,moyenne_mat,ecart_type_mat)/y_max_plot, color="red") 
+plt.text(5, 0.1, "moyenne= {0:6.3f}".format(moyenne_mat),color="red")
+plt.axvline(moyenne_mat-ecart_type_mat, ymin=0, ymax=normal(moyenne_mat,moyenne_mat,ecart_type_mat)/y_max_plot, color="red")
+plt.axvline(moyenne_mat+ecart_type_mat, ymin=0, ymax=normal(moyenne_mat,moyenne_mat,ecart_type_mat)/y_max_plot, color="red")
 
 
+plt.figure(6)
+
+
+#PPP
+plt.hist(PPP_ESE,[0,2,4,6,8,10,12,14,16,18,20],color='blue',edgecolor='black',density=True)
+plt.title('notes PPP ESE')
+plt.xlabel('Notes')
+plt.ylabel('Fréquences')
+
+#Calcul de la moyenne
+moyenne_PPP=np.mean(PPP_ESE)
+print('moyenne PPP ESE=',moyenne_PPP)
+
+# Calcul de l'écart type
+ecart_type_PPP=np.std(PPP_ESE)
+print('ecart PPP ESE=',ecart_type_PPP)
+
+# Tracé de la loi normale
+abscisses_notes=np.linspace(0,20,1000)
+plt.plot(abscisses_notes, normal(abscisses_notes,moyenne_PPP,ecart_type_PPP),'r')
+axes=plt.gca()
+y_min_plot,y_max_plot=axes.get_ylim()
+print(y_max_plot)
+plt.axvline(moyenne_PPP, ymin=0, ymax=normal(moyenne_PPP,moyenne_PPP,ecart_type_PPP)/y_max_plot, color="red") 
+plt.text(5, 0.1, "moyenne= {0:6.3f}".format(moyenne_PPP),color="red")
+plt.axvline(moyenne_PPP-ecart_type_PPP, ymin=0, ymax=normal(moyenne_PPP,moyenne_PPP,ecart_type_PPP)/y_max_plot, color="red")
+plt.axvline(moyenne_PPP+ecart_type_PPP, ymin=0, ymax=normal(moyenne_PPP,moyenne_PPP,ecart_type_PPP)/y_max_plot, color="red")
 
 
 
@@ -120,7 +259,7 @@ import numpy as np
 #tracé de l'histogramme loi normale et densite de proba
 # donner la valeur de l'écart-type
 ecart_type= 10
-plt.figure(3)
+plt.figure(7)
 nbSimu=1000
 Simu=np.random.normal(100,ecart_type,size=nbSimu)
 #Simu=np.random.normal(100, 30) +30+5*np.random.randint(0, 256)
@@ -132,32 +271,34 @@ plt.hist(Simu,bins=15,density=True,edgecolor="k");
 x=np.linspace(10,200,2000)
 plt.plot(x, normal(x,100,ecart_type),'r')
 plt.title("simulation loi normale avec écart-type = {0:6.3f}".format(ecart_type))
-plt.show()
+
+ecart_type= 20
+plt.figure(8)
+nbSimu=1000
+Simu=np.random.normal(100,ecart_type,size=nbSimu)
+#Simu=np.random.normal(100, 30) +30+5*np.random.randint(0, 256)
+#formule desité de probabilité loi normale
+def normal(x,u,sigma):
+  return (1/(sigma*np.sqrt(2*np.pi))) *np.exp( - np.power( (x- u) ,2)/(2*np.power(sigma,2)))
+
+plt.hist(Simu,bins=15,density=True,edgecolor="k");
+x=np.linspace(10,200,2000)
+plt.plot(x, normal(x,100,ecart_type),'r')
+plt.title("simulation loi normale avec écart-type = {0:6.3f}".format(ecart_type))
+
+ecart_type= 50
+plt.figure(9)
+nbSimu=1000
+Simu=np.random.normal(100,ecart_type,size=nbSimu)
+#Simu=np.random.normal(100, 30) +30+5*np.random.randint(0, 256)
+#formule desité de probabilité loi normale
+def normal(x,u,sigma):
+  return (1/(sigma*np.sqrt(2*np.pi))) *np.exp( - np.power( (x- u) ,2)/(2*np.power(sigma,2)))
+
+plt.hist(Simu,bins=15,density=True,edgecolor="k");
+x=np.linspace(10,200,2000)
+plt.plot(x, normal(x,100,ecart_type),'r')
+plt.title("simulation loi normale avec écart-type = {0:6.3f}".format(ecart_type))
 
 
-
-#########################################################
-# series statistiques doubles
-########################################################
-# calcul de la covariance
-temperature=[3,5.3,8.4,13.1,14.1,18.7,22,20.4,17.5,13.1,8.6,4]
-precipitations=[74,61,61,28,68,115,28,25,45,83,144,60]
-
-plt.figure(4)
-plt.scatter(temperature,precipitations)
-
-#calcul de la covariance
-matrice_cov=np.cov(temperature,precipitations,bias=True)
-print('matrice de covariance=',matrice_cov)
-print('la covariance de X et Y est =',matrice_cov[0][1])
-
-# droite de régression
-
-a,b=np.polyfit(temperature,precipitations,1)
-print('la droite de régression a pour équation y=',a,'x+',b)
-x_trace=np.linspace(min(temperature),max(temperature),100)
-plt.plot(x_trace,a*x_trace+b,'red')
-plt.title('températures et parécipitations dans le Sud Ouest en 2010')
-plt.xlabel('Températures en °C')
-plt.ylabel('Précipitation en mm')
 plt.show()
