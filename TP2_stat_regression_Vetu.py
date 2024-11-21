@@ -123,7 +123,7 @@ plt.xlabel('Ancienneté en années')
 plt.ylabel('Salaire en €')
 plt.show()
 
-#Determination des valeurs ajustées
+#Determination des valeurs ajustées et des erreurs
 for i in range(len(anciennete)):
     print(f"Salaire ajusté pour une ancienneté de {anciennete[i]} ans =",a1*anciennete[i]+b1)
     print(f"Salaire réel =",salaire[i])
