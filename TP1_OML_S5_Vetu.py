@@ -272,7 +272,33 @@ x=np.linspace(10,200,2000)
 plt.plot(x, normal(x,100,ecart_type),'r')
 plt.title("simulation loi normale avec écart-type = {0:6.3f}".format(ecart_type))
 
+ecart_type= 20
+plt.figure(8)
+nbSimu=1000
+Simu=np.random.normal(100,ecart_type,size=nbSimu)
+#Simu=np.random.normal(100, 30) +30+5*np.random.randint(0, 256)
+#formule desité de probabilité loi normale
+def normal(x,u,sigma):
+  return (1/(sigma*np.sqrt(2*np.pi))) *np.exp( - np.power( (x- u) ,2)/(2*np.power(sigma,2)))
 
+plt.hist(Simu,bins=15,density=True,edgecolor="k");
+x=np.linspace(10,200,2000)
+plt.plot(x, normal(x,100,ecart_type),'r')
+plt.title("simulation loi normale avec écart-type = {0:6.3f}".format(ecart_type))
+
+ecart_type= 50
+plt.figure(9)
+nbSimu=1000
+Simu=np.random.normal(100,ecart_type,size=nbSimu)
+#Simu=np.random.normal(100, 30) +30+5*np.random.randint(0, 256)
+#formule desité de probabilité loi normale
+def normal(x,u,sigma):
+  return (1/(sigma*np.sqrt(2*np.pi))) *np.exp( - np.power( (x- u) ,2)/(2*np.power(sigma,2)))
+
+plt.hist(Simu,bins=15,density=True,edgecolor="k");
+x=np.linspace(10,200,2000)
+plt.plot(x, normal(x,100,ecart_type),'r')
+plt.title("simulation loi normale avec écart-type = {0:6.3f}".format(ecart_type))
 
 
 plt.show()
@@ -286,7 +312,7 @@ plt.show()
 temperature=[3,5.3,8.4,13.1,14.1,18.7,22,20.4,17.5,13.1,8.6,4]
 precipitations=[74,61,61,28,68,115,28,25,45,83,144,60]
 
-plt.figure(8)
+plt.figure(10)
 plt.scatter(temperature,precipitations)
 
 #calcul de la covariance
