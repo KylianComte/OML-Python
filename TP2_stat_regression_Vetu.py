@@ -150,7 +150,7 @@ print('la droite de régression a pour équation y=',a4,'x+',b4)
 
 # Estimer 2018 
 chiffreAffaires2018=a4*4+b4
-print('le chiffre d affaires de 2018 est =',chiffreAffaires2018)
+print('le chiffre d affaires estimé de 2018 est =',chiffreAffaires2018)
 
 # Tracé des points
 plt.figure(4)
